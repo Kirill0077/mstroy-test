@@ -8,6 +8,24 @@ importers:
 
   .:
     dependencies:
+      '@ag-grid-community/client-side-row-model':
+        specifier: ^32.3.0
+        version: 32.3.9
+      '@ag-grid-community/core':
+        specifier: ^32.3.0
+        version: 32.3.9
+      '@ag-grid-community/styles':
+        specifier: ^32.3.0
+        version: 32.3.9
+      '@ag-grid-community/vue3':
+        specifier: ^32.3.0
+        version: 32.3.9(typescript@5.9.3)
+      '@ag-grid-enterprise/row-grouping':
+        specifier: ^32.3.0
+        version: 32.3.9
+      ag-grid-enterprise:
+        specifier: ^32.3.0
+        version: 32.3.9
       vue:
         specifier: ^3.5.27
         version: 3.5.27(typescript@5.9.3)
@@ -83,6 +101,24 @@ packages:
 
   '@acemir/cssom@0.9.31':
     resolution: {integrity: sha512-ZnR3GSaH+/vJ0YlHau21FjfLYjMpYVIzTD8M8vIEQvIGxeOXyXdzCI140rrCY862p/C/BbzWsjc1dgnM9mkoTA==}
+
+  '@ag-grid-community/client-side-row-model@32.3.9':
+    resolution: {integrity: sha512-/x6gPhxn6c/QQSmDuNf81xrBNc3TKGymmokznvXPPf4tAXeLZn5kF0cW3sGa52XyqZcIsYFQvLkI+pCsX+I4ng==}
+
+  '@ag-grid-community/core@32.3.9':
+    resolution: {integrity: sha512-oZeAEPgaJVMzfKqbAPCyadcN5+iy+tjvhRLqEYJdBxtLgW/s2s0qXcXQvnrz7eUMD3Z7h3BQRVt2h/p0T6Ox/w==}
+
+  '@ag-grid-community/styles@32.3.9':
+    resolution: {integrity: sha512-uPNR5EXeQqAIC0gohmY7CJ97cTIA/JtNSqAUzJ8AdVZcz4dbk9JJIl9DRFUYL+qWhMY+fUSTw2a+Yi6aOGSs8A==}
+
+  '@ag-grid-community/vue3@32.3.9':
+    resolution: {integrity: sha512-9NNdsH5C0mv5CabVbDptetYVisuBXmv1W9R5XvtUpMSEiTKbse9wh4fWcdFFB+eTABBJXdee9B0YVbDf1CmGfw==}
+
+  '@ag-grid-enterprise/core@32.3.9':
+    resolution: {integrity: sha512-1iqtkoOdg/idVWLa8Dq6lfJOjajSkw8Z/MWFmDQTYgfhf2D/IZ9ECEo0BmU3fv42yjc7xIB8eLUIJsQ/UzZHXw==}
+
+  '@ag-grid-enterprise/row-grouping@32.3.9':
+    resolution: {integrity: sha512-uvjuXp/B5jHTAf5v2y/v7R+/yZ8g8Y0YUaxOnapIAqRfqn7PdHqSk1RQySsz0pfLSWzNDWdag494VKRdO/3J+A==}
 
   '@asamuzakjp/css-color@4.1.1':
     resolution: {integrity: sha512-B0Hv6G3gWGMn0xKJ0txEi/jM5iFpT3MfDxmhZFb4W047GvytCf1DHQ1D69W3zHI4yWe2aTZAA0JnbMZ7Xc8DuQ==}
@@ -934,6 +970,21 @@ packages:
     resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  ag-charts-community@10.3.9:
+    resolution: {integrity: sha512-9rZneZr1xwX2yjoD+9+WJjNd0WF/FD1ODpNqOR79bqMWu1T9fTu24N51ZIMPDdGHQWEPzdpva7f+K2xmHY5ntA==}
+
+  ag-charts-locale@10.3.9:
+    resolution: {integrity: sha512-Wq0VNFFwE9+mErmeRue1vGTtuTmM0gH6PXbCnZNORv31J6smXF+uqmZ+98cZ7kXZQ27+HiVElh8HakQsBg70bA==}
+
+  ag-charts-types@10.3.9:
+    resolution: {integrity: sha512-drcRiJVencliC8LnRwk4MmeQDNNBg5GzmOoLFihO3/k0CUK0VF/N+2nc7iFozwaNG0btSB9vAhYuJLjqHMtRrQ==}
+
+  ag-grid-community@32.3.9:
+    resolution: {integrity: sha512-l07SB0mCbGPkC1R8rQQFgBtI5+1FoXBi3RUk1+dHKV/UPeorMEFAzCokcsOhz0qwcWCPrHauUsbRa1SIxfVEJQ==}
+
+  ag-grid-enterprise@32.3.9:
+    resolution: {integrity: sha512-saYGKFk+XakHQqaVbthM8Ax64M9m0G9B3gwRghqekQYKd5e3KWpyp/ve8YTzufyBk5SvrNgG9REX52w6ldMfJg==}
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -1800,6 +1851,9 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
@@ -2050,6 +2104,34 @@ packages:
 snapshots:
 
   '@acemir/cssom@0.9.31': {}
+
+  '@ag-grid-community/client-side-row-model@32.3.9':
+    dependencies:
+      '@ag-grid-community/core': 32.3.9
+      tslib: 2.8.1
+
+  '@ag-grid-community/core@32.3.9':
+    dependencies:
+      ag-charts-types: 10.3.9
+      tslib: 2.8.1
+
+  '@ag-grid-community/styles@32.3.9': {}
+
+  '@ag-grid-community/vue3@32.3.9(typescript@5.9.3)':
+    dependencies:
+      '@ag-grid-community/core': 32.3.9
+      vue: 3.5.27(typescript@5.9.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@ag-grid-enterprise/core@32.3.9':
+    dependencies:
+      '@ag-grid-community/core': 32.3.9
+
+  '@ag-grid-enterprise/row-grouping@32.3.9':
+    dependencies:
+      '@ag-grid-community/core': 32.3.9
+      '@ag-grid-enterprise/core': 32.3.9
 
   '@asamuzakjp/css-color@4.1.1':
     dependencies:
@@ -2903,6 +2985,24 @@ snapshots:
 
   acorn@8.15.0: {}
 
+  ag-charts-community@10.3.9:
+    dependencies:
+      ag-charts-locale: 10.3.9
+      ag-charts-types: 10.3.9
+
+  ag-charts-locale@10.3.9: {}
+
+  ag-charts-types@10.3.9: {}
+
+  ag-grid-community@32.3.9:
+    dependencies:
+      ag-charts-types: 10.3.9
+
+  ag-grid-enterprise@32.3.9:
+    dependencies:
+      ag-charts-community: 10.3.9
+      ag-grid-community: 32.3.9
+
   agent-base@7.1.4: {}
 
   ajv@6.12.6:
@@ -3736,6 +3836,8 @@ snapshots:
   ts-api-utils@2.4.0(typescript@5.9.3):
     dependencies:
       typescript: 5.9.3
+
+  tslib@2.8.1: {}
 
   type-check@0.4.0:
     dependencies:
