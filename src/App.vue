@@ -14,7 +14,7 @@ onMounted(async () => {
 <template>
     <div class="app">
         <h1 class="app-title">Хранилище дерева</h1>
-        <TreeStoreGrid v-if="!loading" :tree-store="treeStore" />
+        <TreeStoreGrid v-if="!loading" :treeItems="treeStore" />
         <div v-else>Загрузка...</div>
     </div>
 </template>
