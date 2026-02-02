@@ -21,16 +21,25 @@ export function useTreeStore(treeStore: Ref<TreeItemBase[]>): TreeStoreComponent
         console.log(rowData.value, columnDefs.value);
     });
 
-    const gridOptions = computed<GridOptions>(() => ({
-        treeData: true,
-        getDataPath: getDataPath(treeStoreInstance.value),
-        getRowId,
-        groupDefaultExpanded: -1 as const,
-        rowData: rowData.value,
-        columnDefs: [...columnDefs.value],
-        defaultColDef,
-        suppressLoadingOverlay: true,
-    }));
+    const gridOptions = computed<GridOptions>(() => {
+        const store = treeStoreInstance.value;
+        return {
+            treeData: true,
+            getDataPath: getDataPath(store),
+            getRowId,
+            groupDefaultExpanded: -1 as const,
+            rowData: rowData.value,
+            columnDefs: [...columnDefs.value],
+            defaultColDef,
+            suppressLoadingOverlay: true,
+            rowClassRules: {
+                "ag-row-group": (params) => {
+                    const id = params.data?.id;
+                    return id != null && store.getChildren(id).length > 0;
+                },
+            },
+        };
+    });
 
 
     return { modules, gridOptions };

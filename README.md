@@ -1,54 +1,111 @@
 # mstroy-test
 
-This template should help get you started developing with Vue 3 in Vite.
+Тестовый проект на Vue 3 + Vite: приложение «Хранилище дерева» — иерархическая таблица на базе AG Grid и собственной модели дерева.
 
-## Recommended IDE Setup
+## Стек
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Vue 3** (Composition API, `<script setup>`)
+- **TypeScript**
+- **Vite 7**
+- **AG Grid** (Community + Enterprise Row Grouping) — таблица с древовидными данными
+- **Vitest** + **@vue/test-utils** — юнит-тесты
+- **ESLint**, **Oxlint**, **Prettier** — линтинг и форматирование
 
-## Recommended Browser Setup
+## Требования
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- **Node.js** `^20.19.0` или `>=22.12.0`
+- **pnpm** (рекомендуется)
 
-## Type Support for `.vue` Imports in TS
+## Установка и запуск
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Приложение откроется по адресу из вывода Vite (обычно `http://localhost:5173`).
 
-```sh
-pnpm build
+## Скрипты
+
+| Команда           | Описание                               |
+| ----------------- | -------------------------------------- |
+| `pnpm dev`        | Запуск dev-сервера с hot-reload        |
+| `pnpm build`      | Проверка типов и сборка для production |
+| `pnpm preview`    | Просмотр production-сборки             |
+| `pnpm test:unit`  | Запуск юнит-тестов (Vitest)            |
+| `pnpm type-check` | Проверка типов (vue-tsc)               |
+| `pnpm lint`       | Линтинг (oxlint + eslint)              |
+| `pnpm format`     | Форматирование кода (Prettier)         |
+
+## Структура проекта
+
+```
+src/
+├── App.vue                    # Корневой компонент: заголовок и TreeStoreGrid
+├── main.ts
+├── __tests__/                 # Юнит-тесты
+│   ├── app.spec.ts
+│   ├── tree-store.spec.ts     # Тесты модели TreeStore
+│   └── tree-store-grid.spec.ts # Тесты компонента TreeStoreGrid
+└── modules/
+    └── tree-store-grid/      # Модуль «дерево + таблица»
+        ├── api/               # API и тестовые данные
+        ├── composables/       # useTreeStore — связка TreeStore и AG Grid
+        ├── model/             # TreeStore, типы (TreeItemBase, TreeItemId)
+        ├── ui/                # Компонент TreeStoreGrid.vue
+        └── index.ts           # Публичный API модуля
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Модуль tree-store-grid
 
-```sh
+### Модель (TreeStore)
+
+Класс `TreeStore<T>` — хранилище элементов дерева с индексами по `id` и по родителю. Поддерживает:
+
+- **Чтение:** `getAll()`, `getItem(id)`, `getChildren(id)`, `getAllChildren(id)`, `getAllParents(id)`
+- **Изменение:** `addItem(item)`, `removeItem(id)`, `updateItem(item)`
+
+Элементы реализуют интерфейс `TreeItemBase`: обязательные `id` и опциональный `parent`, остальные поля — произвольные (например, `label`).
+
+### UI (TreeStoreGrid)
+
+Компонент принимает проп `treeItems: TreeItemBase[]` и отображает их в AG Grid в виде дерева (тема Quartz, группировка по иерархии). Использует composable `useTreeStore` для построения `gridOptions` и модулей грида.
+
+### API
+
+- `getTestData()` — асинхронная загрузка тестовых данных для демо (задержка ~1 с).
+
+## Тестирование
+
+Тесты находятся в `src/__tests__/`:
+
+- **tree-store.spec.ts** — 22 теста для `TreeStore`: конструктор, getters, add/remove/update, граничные случаи.
+- **tree-store-grid.spec.ts** — 5 тестов для `TreeStoreGrid.vue`: монтирование, props, рендер AgGridVue, передача `gridOptions` и `modules`.
+- **app.spec.ts** — базовый тест корневого компонента.
+
+Запуск один раз:
+
+```bash
+pnpm test:unit --run
+```
+
+Режим watch (по умолчанию без `--run`):
+
+```bash
 pnpm test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Настройка IDE и браузера
 
-```sh
-pnpm lint
-```
+- **VS Code:** рекомендуется [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (Volar), Vetur отключить.
+- **TypeScript:** для типов в `.vue` используется `vue-tsc`; в редакторе нужен Volar.
+- **Браузер:** для отладки Vue удобно использовать [Vue.js devtools](https://devtools.vuejs.org/).
+
+## Конфигурация
+
+- Сборка и тесты: `vite.config.ts`, `vitest.config.ts`
+- TypeScript: `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json`, `tsconfig.vitest.json`
+- Линтинг: `eslint.config.ts`, `.oxlintrc.json`
+- Форматирование: `.prettierrc.json`
+
+Коммиты в проекте оформляются в формате [Conventional Commits](https://www.conventionalcommits.org/) на русском языке.

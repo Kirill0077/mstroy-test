@@ -23,6 +23,9 @@ onMounted(async () => {
 .app {
     padding: 1rem;
     max-width: 900px;
+    min-height: 100px;
+    max-height: 100svh;
+    height: 400px;
     margin: 0 auto;
 }
 

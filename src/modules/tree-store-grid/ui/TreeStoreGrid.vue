@@ -15,12 +15,17 @@ const { modules, gridOptions } = useTreeStore(treeStore);
 <template>
     <div class="tree-store-grid-wrapper">
         <AgGridVue class="ag-theme-quartz" :grid-options="gridOptions" :modules="modules"
-            style="height: 400px; width: 100%" />
+            style="height: 100%; width: 100%" />
     </div>
 </template>
 
 <style scoped>
 .tree-store-grid-wrapper {
     width: 100%;
+    height: 100%;
+}
+
+:deep(.ag-row-group) {
+    font-weight: 500;
 }
 </style>
