@@ -1,1 +1,1 @@
-export { default as TreeStoreGrid } from './TreeStoreGrid.vue'
+export { default as TreeStoreGrid } from "./TreeStoreGrid.vue";
