@@ -7,6 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+.cursor/
+.cursorrules
+
+.vscode
 node_modules
 .DS_Store
 dist
@@ -15,8 +19,7 @@ coverage
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+
 .idea
 *.suo
 *.ntvs*
