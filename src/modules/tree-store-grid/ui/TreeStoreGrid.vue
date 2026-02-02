@@ -8,18 +8,14 @@ const props = defineProps<{
     treeItems: TreeItemBase[];
 }>();
 
-const treeStore = toRef(() => props.treeItems);
+const treeStore = toRef(props, "treeItems");
 const { modules, gridOptions } = useTreeStore(treeStore);
 </script>
 
 <template>
     <div class="tree-store-grid-wrapper">
-        <AgGridVue
-            class="ag-theme-quartz"
-            :grid-options="gridOptions"
-            :modules="modules"
-            style="height: 400px; width: 100%"
-        />
+        <AgGridVue class="ag-theme-quartz" :grid-options="gridOptions" :modules="modules"
+            style="height: 400px; width: 100%" />
     </div>
 </template>
 

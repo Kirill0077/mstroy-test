@@ -1,7 +1,10 @@
 import type { ColDef, GetDataPath, GridOptions, Module } from "@ag-grid-community/core";
-import { ClientSideRowModelModule, RowGroupingModule } from "ag-grid-enterprise";
 import { TreeStore, type TreeItemBase, type TreeStoreComponent } from "../model";
-import { computed, type Ref } from "vue";
+import { computed, onMounted, type Ref } from "vue";
+import { RowGroupingModule } from "@ag-grid-enterprise/row-grouping";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
+
+
 
 export function useTreeStore(treeStore: Ref<TreeItemBase[]>): TreeStoreComponent {
     const modules: Module[] = [ClientSideRowModelModule, RowGroupingModule] as Module[];
@@ -14,6 +17,10 @@ export function useTreeStore(treeStore: Ref<TreeItemBase[]>): TreeStoreComponent
         resizable: true,
     };
 
+    onMounted(() => {
+        console.log(rowData.value, columnDefs.value);
+    });
+
     const gridOptions = computed<GridOptions>(() => ({
         treeData: true,
         getDataPath: getDataPath(treeStoreInstance.value),
@@ -22,7 +29,9 @@ export function useTreeStore(treeStore: Ref<TreeItemBase[]>): TreeStoreComponent
         rowData: rowData.value,
         columnDefs: [...columnDefs.value],
         defaultColDef,
+        suppressLoadingOverlay: true,
     }));
+
 
     return { modules, gridOptions };
 }
@@ -56,9 +65,9 @@ export function getColumnDefs(treeStore: TreeStore): ColDef[] {
 
 export const getDataPath =
     (treeStore: TreeStore): GetDataPath =>
-    (data: TreeItemBase) => {
-        const parents = treeStore.getAllParents(data.id);
-        return parents.map((p: TreeItemBase) => String(p.id)).reverse();
-    };
+        (data) => {
+            const parents = treeStore.getAllParents(data?.id);
+            return parents.map((p: TreeItemBase) => String(p.id)).reverse();
+        };
 
 export const getRowId = (params: { data: TreeItemBase }) => String(params.data.id);
